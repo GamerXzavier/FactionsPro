@@ -15,6 +15,7 @@ Member:
   sethome: false
   unclaim: false
   unsethome: false
+  leader: false
 Officer:
   claim: true
   demote: false
@@ -26,3 +27,4 @@ Officer:
   sethome: true
   unclaim: true
   unsethome: true
+  leader: false
