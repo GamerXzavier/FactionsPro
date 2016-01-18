@@ -1,9 +1,9 @@
-MaxFactionNameLength: 20
-MaxPlayersPerFaction: 10
+MaxFactionNameLength: 500
+MaxPlayersPerFaction: 50
 ClaimingEnabled: true
-FactionNametags: true
-PlotSize: 25
-PlaceSnowBlocksOnClaim: true
+FactionNametags: false
+PlotSize: 20
+PlaceSnowBlocksOnClaim: false
 Member:
   claim: false
   demote: false
