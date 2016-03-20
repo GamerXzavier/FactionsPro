@@ -1,9 +1,9 @@
 name: FactionsPro
 author: Tethered_
 description: A Plugin For Easily Managing Factions
-version: 8.0
+version: 9.0-BETAZZZ
 main: FactionsPro\FactionMain
-api: [1.14.0]
+api: [2.00.0]
 commands:
   faction:
     description: use /f help for all parameters
