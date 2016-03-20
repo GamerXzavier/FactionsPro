@@ -28,7 +28,7 @@ use pocketmine\utils\TextFormat;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\utils\Config;
 use pocketmine\event\entity\EntityDamageEvent;
-use pocketmine\block\Snow;
+use pocketmine\block\Air;
 use pocketmine\math\Vector3;
 use pocketmine\level\Level;
 use FactionsPro\utils\Session;
@@ -36,8 +36,7 @@ use FactionsPro\utils\Session;
 
 class FactionMain extends PluginBase implements Listener
 {
-	
-	public $db;
+	c $db;
 	public $prefs;
 	public $factions = array();
 	public $sessions = array();
@@ -71,12 +70,12 @@ class FactionMain extends PluginBase implements Listener
 		$this->fCommand = new FactionCommands($this);
 		
 		$this->prefs = new Config($this->getDataFolder() . "Prefs.yml", CONFIG::YAML, array(
-				"MaxFactionNameLength" => 20,
-				"MaxPlayersPerFaction" => 10,
+				"MaxFactionNameLength" => 5,
+				"MaxPlayersPerFaction" => 20,
 				"OnlyLeadersAndOfficersCanInvite" => true,
 				"OfficersCanClaim" => true,
-				"PlotSize" => 25,
-				"PlaceSnowBlocksOnClaim" => true,
+				"PlotSize" => 0,
+				"PlaceSnowBlocksOnClaim" => false,
 		));
 		$this->db = new \SQLite3($this->getDataFolder() . "FactionsPro.db");
 		$this->db->exec("CREATE TABLE IF NOT EXISTS motdrcv (player TEXT PRIMARY KEY, timestamp INT);");
@@ -143,7 +142,7 @@ class FactionMain extends PluginBase implements Listener
 	
 	public function claimingIsDisabled(Level $level)
 	{
-		$disabledWorlds = explode(":", file_get_contents($this->getDataFolder() . "NoClaimWorlds.txt"));
+		$disabledWorlds = explode("Hub:Hub-Lobby:Beginner:Shop:Info:Stuff:KitPvP:PEPlot", file_get_contents($this->getDataFolder() . "NoClaimWorlds.txt"));
 		return in_array($level->getName(), $disabledWorlds);
 	}
 	
@@ -159,7 +158,7 @@ class FactionMain extends PluginBase implements Listener
 	
 	public function drawPlot($sender, $faction, $x, $y, $z, $level, $size) {
 		$arm = ($size - 1) / 2;
-		$block = new Snow();
+		$block = new Air();
 		if($this->cornerIsInPlot($x + $arm, $z + $arm, $x - $arm, $z - $arm)) {
 			$claimedBy = $this->factionFromPoint($x, $z);
 			$sender->sendMessage($this->formatMessage("This area is aleady claimed by $claimedBy."));
