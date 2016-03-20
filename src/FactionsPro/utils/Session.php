@@ -77,9 +77,9 @@ class Session
 		if(!$this->inFaction()) {
 			$this->getPlayer()->setNameTag($this->getPlayer()->getName());
 		} elseif($this->isLeader()) {
-			$this->getPlayer()->setNameTag("**[" . $this->getFactionName() . "] " . $this->getPlayer()->getName());
+			$this->getPlayer()->setNameTag("++[" . $this->getFactionName() . "] " . $this->getPlayer()->getName());
 		} elseif($this->isOfficer()) {
-			$this->getPlayer()->setNameTag("*[" . $this->getFactionName() . "] " . $this->getPlayer()->getName());
+			$this->getPlayer()->setNameTag("+[" . $this->getFactionName() . "] " . $this->getPlayer()->getName());
 		} elseif($this->isMember()) {
 			$this->getPlayer()->setNameTag("[" . $this->getFactionName() . "] " . $this->getPlayer()->getName());
 		}
@@ -113,9 +113,9 @@ class Session
 		return $this->faction != null;
 	}
 	
-	public function isLeader() { return $this->rank == "Leader"; }
-	public function isMember() { return $this->rank == "Member"; }
-	public function isOfficer() { return $this->rank == "Officer"; }
+	public function isLeader() { return $this->rank == "Alpha"; }
+	public function isMember() { return $this->rank == "Newborn"; }
+	public function isOfficer() { return $this->rank == "Beta"; }
 	
 	
 }
